@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block css %}
+{% endblock  %}
+{% block body %}
+    {% for data in manageAppointment %}
+        {{data.appointment.product}}<a href="/emp/conform/{{data.id}}">Conform</a>
+        <hr>
+        {{data.appointment.product.img}}
+    {% endfor %}
+{% endblock  %}
+{% block js %}
+{% endblock  %}

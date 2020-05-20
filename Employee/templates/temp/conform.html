@@ -1,0 +1,51 @@
+{% extends 'temp/base.html' %}
+{% block title %}
+Appointment
+{% endblock  %}
+{% block body %}
+<div class="et brf">
+    <div class="bqn">
+<div class="bqo">
+<h6 class="bqq">Dashboards</h6>
+<h2 class="bqp">Order history</h2>
+</div>
+
+
+</div>
+
+<div>
+    {{appointment}}
+    <br>
+    {{c_user}}
+    <br>
+</div>
+
+
+
+<div class="ly">
+    <script>
+        $("#h_ma").val("{{manageAppointment.id}}");
+    </script>
+<form method="post" enctype="multipart/form-data">{% csrf_token %}
+    <input type="hidden" name="manageAppointment" id="h_ma">
+    Enter Note:- <br><textarea name="note" id="" cols="30" rows="10"></textarea>
+
+    <br>
+    <br>
+    Drop File:- <input type="file" name="file" id="">
+    <br><br>
+    Enter Amount:- <input type="number" name="amount" id="">
+    <br><br>
+    <input type="submit" value="submit">
+</form>
+</div>
+
+
+  </div>
+</div>
+</div>
+
+        
+{% endblock  %}
+{% block js %}
+{% endblock  %}

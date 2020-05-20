@@ -1,0 +1,74 @@
+{% extends 'karma/index.html' %}
+{% load static %}
+{% block title %}Appointment
+{% endblock  %}
+{% block body %}
+<script>
+    $(document).ready(function () {
+        $("#li_appo").addClass("active");
+    });
+</script>
+<section class="banner-area organic-breadcrumb">
+<div class="container">
+<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+<div class="col-first">
+<h1>Appointment List</h1>
+<nav class="d-flex align-items-center">
+<a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
+<a href="category.html">Appointment</a>
+</nav>
+</div>
+</div>
+</div>
+</section>
+
+
+<section class="cart_area">
+<div class="container">
+<div class="cart_inner">
+<div class="table-responsive">
+<table class="table">
+<thead>
+<tr>
+<th scope="col" colspan="2">Product</th>
+</tr>
+</thead>
+<tbody>
+{% for data in data %}
+<tr>
+<td colspan="3">
+<div class="media">
+<div class="d-flex">
+<img src="{{data.product.img_thumb.url}}" alt="">
+</div>
+<div class="media-body">
+<p>{{data.product.name}}</p>
+</div>
+</div>
+</td>
+<td>
+<div class="checkout_btn_inner d-flex align-items-center">
+    
+    {% if data.status %}
+    <span class="primary-btn">Accepted</span>
+    {% else %} 
+    <span class="primary-btn">Pendiing</span>
+    {% endif %}
+  
+  </div>
+</td>
+</tr>
+{% endfor %}
+
+
+
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+
+{% endblock  %}
+{% block js %}
+{% endblock  %}

@@ -1,0 +1,141 @@
+{% extends 'karma/index.html' %}
+{% load static %}
+{% block title %}Shop
+{% endblock  %}
+{% block body %}
+<script>
+    $(document).ready(function () {
+        $("#li_shop").addClass("active");
+    });
+</script>
+<section class="banner-area organic-breadcrumb">
+<div class="container">
+<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+<div class="col-first">
+<h1>Product Shop</h1>
+<nav class="d-flex align-items-center">
+<a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
+<a href="#">Shop</a>
+</nav>
+</div>
+</div>
+</div>
+</section>
+
+{% if product %}
+
+<div class="container">
+<div class="row">
+<!-- <div class="col-xl-3 col-lg-4 col-md-5">
+<div class="sidebar-categories">
+<div class="head"><select>
+<option value="/shop" class>Categories</option>
+<option value="/category/{{data}}">{{data}}</option>
+</select>
+</div>
+<ul class="main-categories">
+<li class="main-nav-list"><a href="/shop">ALL</a></li>
+{% for data in category %}
+<li class="main-nav-list"><a href="/category/{{data}}">{{data}}</a></li>
+{% comment %} <li class="main-nav-list"><a href="#">{{data}}<span class="number"> (24)</span></a></li> {% endcomment %}
+{% endfor %}
+
+</ul>
+</div>
+
+</div> -->
+<script>
+    function selectc(){
+        data = $("#selectc").val();
+        window.location.href = "http://127.0.0.1:8000"+data;
+    }
+</script>
+<div class="col-xl-12 col-lg-12 col-md-12" style="margin-top: 25px;">
+<div class="filter-bar d-flex flex-wrap align-items-center">
+<div class="sorting">
+<select onchange="selectc()" id="selectc"> 
+<option value="/shop">Categories</option>
+{% for data in category %}
+<option value="/category/{{data}}">{{data}}</option>
+{% endfor %}
+</select>
+</div>
+</div>
+<section class="lattest-product-area pb-40 category-list">
+<div class="row">
+
+{% for data in product %}
+<div class="col-lg-4 col-md-6">
+<div class="single-product">
+<img class="img-fluid" src="{{data.img_thumb.url}}" alt="/detail/{{data.id}}">
+<div class="product-details">
+<h6>{{data.name}}</h6>
+<div class="price">
+<h6>₹ {{data.price}}.00</h6>
+{% comment %} <h6 class="l-through">$210.00</h6> {% endcomment %}
+</div>
+<div class="prd-bottom">
+
+{% if data.id in cart%}
+<a href="/cart/" class="social-info">
+    <span class="ti-bag"></span>
+    <p class="hover-text">Goto Cart</p>
+    </a>
+{% else %}
+<a href="/add_cart/{{data.id}}" class="social-info">
+<span class="ti-bag"></span>
+<p class="hover-text">add to bag</p>
+</a>
+{% endif %}
+{% comment %} <a href="/detail/{{data.id}}" class="social-info">
+<span class="lnr lnr-heart"></span>
+<p class="hover-text">Wishlist</p>
+</a> {% endcomment %}
+{% comment %} <a href="#" class="social-info">
+<span class="lnr lnr-sync"></span>
+<p class="hover-text">compare</p>
+</a> {% endcomment %}
+<a href="/product/{{data.id}}" class="social-info">
+<span class="lnr lnr-move"></span>
+<p class="hover-text">view more</p>
+</a>
+</div>
+</div>
+</div>
+</div>
+{% endfor %}
+</div>
+</section>
+
+{% if product.has_other_pages %}
+<div class="filter-bar d-flex flex-wrap align-items-center">
+<div class="sorting mr-auto">
+
+</div>
+<div class="pagination">
+{% if product.has_previous %}
+<a href="?page={{ product.previous_page_number }}" class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
+{% endif %}
+{% for i in product.paginator.page_range %}
+{% if product.number == i %}
+<a href="#" class="active">{{ i }}</a>
+{% else %}
+<a href="?page={{ i }}">{{ i }}</a>
+{% endif %}
+{% endfor %}
+{% if product.has_next %}
+<a href="?page={{ product.next_page_number }}" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+{% endif %}
+</div>
+</div>
+{% endif %}
+</div>
+</div>
+</div>
+{% else %}{% endif %}
+{% comment %} {{user.get_full_name}}
+{{request.get_full_path}}
+                     {% endcomment %}
+{% endblock  %}
+{% block js %}
+{% endblock  %}

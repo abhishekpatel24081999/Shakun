@@ -1,0 +1,30 @@
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<form method="post">{% csrf_token %}
+    <table>
+        <tr>
+            <td>Enter User Name:-</td>
+            <td><input type="text" name="usn"></td>
+        </tr>
+        <tr>
+            <td>Enter Password:-</td>
+            <td><input type="password" name="pwd">
+            Linux@1234</td>
+        </tr>
+        <tr>
+            <td colspan="2">
+            <center>
+            <input type="submit">
+        </center></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

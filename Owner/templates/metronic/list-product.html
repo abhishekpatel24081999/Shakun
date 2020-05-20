@@ -1,0 +1,110 @@
+{% extends 'metronic/base.html' %}
+{% load static %}
+{% static '' %}
+{% block title %}
+{% endblock  %}        
+        
+
+{% block body %}
+
+
+
+
+<!--Begin::Section-->
+<div class="row">
+    
+    {% for data in product %}
+    
+    <div class="col-xl-3">
+        <div class="kt-portlet kt-portlet--height-fluid">
+            <div class="kt-portlet__head kt-portlet__head--noborder">
+                <div class="kt-portlet__head-label">
+                    <h3 class="kt-portlet__head-title">
+
+                    </h3>
+                </div>
+            </div>
+            <div class="kt-portlet__body kt-portlet__body--fit-y kt-margin-b-40">
+                <!--begin::Widget -->
+                <div class="kt-widget kt-widget--user-profile-4">
+                    <div class="kt-widget__head">
+                        <div class="kt-widget__media"> 
+                            <img class="" src="{{data.img_thumb.url}}" alt="image">
+                            <div class="kt-widget__pic kt-widget__pic--danger kt-font-danger kt-font-boldest kt-hidden">
+                                CH
+                            </div>
+                        </div>
+                        <div class="kt-widget__content">
+                            <div class="kt-widget__section">
+                                <a href="#" class="kt-widget__username">
+                                    {{data}}
+                                </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end::Widget -->
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    
+</div>
+<!--End::Section-->
+
+<!--Begin::Pagination-->
+{% if product.has_previous %}
+<div class="row">
+    <div class="col-xl-12">
+        <!--begin:: Components/Pagination/Default-->
+<div class="kt-portlet">
+    <div class="kt-portlet__body">
+        <!--begin: Pagination-->
+        <div class="kt-pagination kt-pagination--brand">
+            <ul class="kt-pagination__links">
+                {% if product.has_previous %}
+                <li class="kt-pagination__link--first">
+                    <a href="?page=1"><i class="fa fa-angle-double-left kt-font-brand"></i></a>
+                </li>
+                <li class="kt-pagination__link--next">
+                    <a href="?page={{ product.previous_page_number }}"><i class="fa fa-angle-left kt-font-brand"></i></a>
+                </li>
+                {% endif %}
+                {% for i in product.paginator.page_range %}
+                {% if product.number == i %}
+                <li class="kt-pagination__link--active">
+                    <a href="#">{{ i }}</a>
+                </li>
+                {% else %}
+                <li>
+                    <a href="?page={{ i }}">{{ i }}</a>
+                </li>
+                {% endif %}
+                {% endfor %}
+                {% if product.has_next %}
+                
+                <li class="kt-pagination__link--prev">
+                    <a href="?page={{ product.next_page_number }}"><i class="fa fa-angle-right kt-font-brand"></i></a>
+                </li>
+                {% endif %}
+                <li class="kt-pagination__link--last">
+                    <a href="#"><i class="fa fa-angle-double-right kt-font-brand"></i></a>
+                </li>
+            </ul>
+        </div>
+        <!--end: Pagination-->
+    </div>
+</div>
+
+<!--end:: Components/Pagination/Default-->   
+
+ </div>
+</div>
+{% endif %}
+
+
+{% endblock  %}
+
+{% block js %}
+{% endblock  %}

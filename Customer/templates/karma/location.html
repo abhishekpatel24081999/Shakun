@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zxx" class="no-js">
+
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<link rel="shortcut icon" href="{% static 'img/fav.png' %}">
+
+<meta charset="UTF-8">
+
+<title>Location</title>
+
+<link rel="stylesheet" href="{% static 'css/linearicons.css' %}">
+<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/themify-icons.css' %}">
+<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+<link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}">
+<link rel="stylesheet" href="{% static 'css/nice-select.css' %}">
+<link rel="stylesheet" href="{% static 'css/nouislider.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/ion.rangeSlider.css' %}" />
+<link rel="stylesheet" href="{% static 'css/ion.rangeSlider.skinFlat.css' %}" />
+<link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    
+    {% csrf_token %}
+    <script>
+        
+        $( document ).ready(function() {
+            var city = "Ahmedabad"
+            // $.get('https://ipinfo.io',function(response){
+            // city = response.city
+            // },'jsonp');
+            $.ajax({ 
+                type: "POST",
+                url : "/",
+                data: { csrfmiddlewaretoken :'{{ csrf_token }}',
+                         city: city },
+                dataType: "json",
+            success: function (data) {
+            console.log("HIIIIIIIIIIIIIIIIIIIIII");
+            
+            window.location.href = "http://127.0.0.1:8000/";
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+
+<header class="header_area sticky-header"><div class="main_menu">
+    <nav class="navbar navbar-expand-lg navbar-light main_box">
+    <div class="container">
+
+        <a class="navbar-brand logo_h" href="index.html"><img src="{% static 'img/logo.png' %}" alt=""></a>
+
+
+        </div>
+        </nav>
+        </div>
+    </header>
+
+<section class="banner-area">
+<div class="container">
+<div class="row fullscreen align-items-center justify-content-start">
+<div class="col-lg-12">
+<div class="active-banner-slider owl-carousel">
+
+<div class="row single-slide align-items-center d-flex">
+<div class="col-lg-5 col-md-6">
+<div class="banner-content">
+<h1>Nike New <br>Collection!</h1>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+<div class="add-bag d-flex align-items-center">
+<a class="add-btn" onclick="setLocation()"><span class="lnr lnr-map-marker" style="font-size: x-large; padding: 12px;"></span></a>
+<span class="add-text text-uppercase" id="city"></span>
+</div>
+</div>
+</div>
+<div class="col-lg-7">
+<div class="banner-img">
+<img class="img-fluid" src="{% static 'img/banner/banner-img.png' %}" alt="">
+</div>
+</div>
+</div>
+    
+
+
+    <script src="{% static 'js/vendor/jquery-2.2.4.min.js' %}" type="4fae98521d521c6f980c2405-text/javascript"></script>
+    <script src="{% static 'cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js' %}" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous" type="4fae98521d521c6f980c2405-text/javascript"></script>
+    <script src="{% static 'js/vendor/bootstrap.min.js' %}" type="4fae98521d521c6f980c2405-text/javascript"></script>
+    <script src="{% static 'js/jquery.ajaxchimp.min.js' %}" type="4fae98521d521c6f980c2405-text/javascript"></script>
+    <script src="{% static 'js/jquery.nice-select.min.js' %}" type="4fae98521d521c6f980c2405-text/javascript"></script>
+    <script src="{% static 'js/jquery.sticky.js' %}" type="4fae98521d521c6f980c2405-text/javascript"></script>
+    <script src="{% static 'js/nouislider.min.js' %}" type="4fae98521d521c6f980c2405-text/javascript"></script>
+  
+    <script src="{% static 'js/jquery.magnific-popup.min.js' %}" type="4fae98521d521c6f980c2405-text/javascript"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}" type="4fae98521d521c6f980c2405-text/javascript"></script>
+    
+    <script src="{% static 'js/main.js' %}" type="4fae98521d521c6f980c2405-text/javascript"></script>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13" type="4fae98521d521c6f980c2405-text/javascript"></script>
+    
+    <script src="{% static 'ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js' %}" data-cf-settings="4fae98521d521c6f980c2405-|49" defer=""></script>
+    
+    <!-- Mirrored from colorlib.com/preview/theme/karma/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 23 Mar 2020 14:24:55 GMT -->
+    
+
+</body>
+    </html>

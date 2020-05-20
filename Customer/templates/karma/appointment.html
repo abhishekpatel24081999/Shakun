@@ -1,0 +1,118 @@
+{% extends 'karma/base.html' %}
+{% load static %}
+{% block title %}Set Appointment
+{% endblock  %}
+{% block body %}
+
+<section class="banner-area organic-breadcrumb">
+<div class="container">
+<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+<div class="col-first">
+<h1>Appointment</h1>
+</div>
+</div>
+</div>
+</section>
+<script>
+    $(document).ready(function () {
+        $("#li_appo").addClass("active");
+    });
+</script>
+{% for data in cart %}
+<section class="order_details section_gap">
+<div class="container">
+<!-- <h3 class="title_confirmation">Thank you. Your order has been received.</h3> -->
+<div class="row order_d_inner">
+<div class="col-lg-4">
+<div class="details_item">
+<h4>Appointment Info</h4>
+<img src="{{data.product.img_thumb.url}}" alt="">
+</div>
+</div>
+<div class="col-lg-8">
+<div class="details_item">
+<h4>Product Details</h4>
+<ul class="list">
+<li><a href="#"><span>Name</span> : {{data.product.name}}</a></li>
+<li><a href="#"><span>Price</span> : {{data.product.price}}</a></li>
+<li><a href="#"><span>Category</span> : {{data.product.category}}</a></li>
+<li><a href="#"><span>Owner </span> : {{data.product.owner}}</a></li>
+<li><a href="#"><span>Discription </span> : {{data.product.disc}}</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="order_details_table">
+<h2>Appointment Form</h2>
+<div class="table-responsive">
+  <form method="post">
+    {% csrf_token %}
+    <input type="hidden" name="id" value="{{data.product.id}}">
+<table class="table">
+<tbody>
+<tr>
+<td>
+<p>Appointment Date:</p>
+</td>
+<td colspan="2">
+<h5><select name="day" id="id_day" class="form-control">
+  <option value="0">Aftrer One Day</option>
+
+  <option value="1">After two Day</option>
+
+  <option value="2">After Three Day</option>
+
+  <option value="3">After Four Day</option>
+
+  <option value="4">After Five Day</option>
+
+</select></h5>
+</td>
+</tr>
+<tr>
+  <td>
+  <p>Address:</p>
+  </td>
+  <td colspan="2">
+  <h5><textarea name="adr" cols="30" rows="10" class="form-control"></textarea></h5>
+  </td>
+  </tr>
+    <tr>
+      <td>
+      <p>Your Village:</p>
+      </td>
+      <td colspan="2">
+      <h5><input type="text" name="vlg" id="" class="form-control"></h5>
+      </td>
+      </tr>
+      <tr>
+        <td>
+        <p>Pincode Number:</p>
+        </td>
+        <td colspan="2">
+        <h5><input type="text" name="pin" id="" class="form-control"></h5>
+        </td>
+        </tr>
+        <tr>
+          <td>
+              <h5><input type="submit"class="form-control btn btn-outline-success"></h5>
+            </td>
+          </tr>
+</tbody>
+</table>
+</form>
+</div>
+</div>
+</div>
+</section>
+{% endfor %}
+
+{% endblock  %}
+{% block js %}
+<script>
+  
+  function setAppointment() {
+    
+  }
+</script>
+{% endblock  %}

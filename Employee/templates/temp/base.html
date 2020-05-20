@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+
+    <title>
+         {% block title %}
+         {% endblock  %}
+    </title>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic" rel="stylesheet">
+    
+      <link href="{% static 'assets/css/toolkit-inverse.css' %}" rel="stylesheet">
+    
+    
+    <link href="{% static 'assets/css/application.css' %}" rel="stylesheet">
+
+    <script src="/media/jquery/jquery.min.js"></script>
+
+    <style>
+      /* note: this is a hack for ios iframe for bootstrap themes shopify page */
+      /* this chunk of css is not part of the toolkit :) */
+      body {
+        width: 1px;
+        min-width: 100%;
+        *width: 100%;
+      }
+    </style>
+  </head>
+
+
+<body>
+  <div class="bw">
+    <div class="dh">
+      <div class="en bpz">
+        <nav class="bqg">
+          <div class="bqa">
+            <button class="bow boy bqb" type="button" data-toggle="collapse" data-target="#nav-toggleable-md">
+              <span class="adp">Toggle nav</span>
+            </button>
+            <a class="bqc brd" href="{% static 'index.html' %}">
+              <span class="bv bhc bqd"></span>
+            </a>
+          </div>
+
+          <div class="collapse bpd" id="nav-toggleable-md">
+            
+            <ul class="nav pb nav-stacked wz">
+              <li class="axq">Dashboards</li>
+              <li class="pa">
+                <a class="oy " href="{% static 'index.html' %}">Overview</a>
+              </li>
+              <li class="pa">
+                <a class="oy active" href="index.html' %}">Order history</a>
+              </li>
+              <li class="pa">
+                <a class="oy "href="{% static 'fluid/index.html' %}">Fluid layout</a>
+              </li>
+              <li class="pa">
+                <a class="oy " href="{% static 'icon-nav/index.html' %}">Icon nav</a>
+              </li>
+
+              <li class="axq">More</li>
+              <li class="pa">
+                <a class="oy "href="{% static 'docs/index.html' %}">
+                  Toolkit docs
+                </a>
+              </li>
+              <li class="pa">
+                <a class="oy" href="http://getbootstrap.com/" target="blank">
+                  Bootstrap docs
+                </a>
+              </li>
+              <li class="pa">
+                <a class="oy " href="{% static 'index-light/index.html' %}">Light UI</a>
+              </li>
+              <li class="pa">
+                <a class="oy" href="#docsModal" data-toggle="modal">
+                  Example modal
+                </a>
+              </li>
+            </ul>
+            <hr class="bre aez">
+          </div>
+        </nav>
+      </div>
+
+
+
+{% block body %}
+{% endblock  %}
+
+
+
+
+
+      
+
+  <div id="docsModal" class="cb fade" tabindex="-1" role="dialog" aria-labelledby="brl">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="sd">
+        <h4 class="modal-title" id="myModalLabel">Example modal</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <p>You're looking at an example modal in the dashboard theme.</p>
+      </div>
+      <div class="se">
+        <button type="button" class="ce ni" data-dismiss="modal">Cool, got it!</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+    <script src="{% static 'assets/js/popper.min.js' %}"></script>
+    <script src="{% static 'assets/js/chart.js' %}"></script>
+    <script src="{% static 'assets/js/tablesorter.min.js' %}"></script>
+    <script src="{% static 'assets/js/toolkit.js' %}"></script>
+    <script src="{% static 'assets/js/application.js' %}"></script>
+    <script>
+      // execute/clear BS loaders for docs
+      $(function(){while(window.BS&&window.BS.loader&&window.BS.loader.length){(window.BS.loader.pop())()}})
+    </script>
+    {% block js %}
+    {% endblock  %}
+  </body>
+
+<!-- Mirrored from bootstrap-themes.github.io/dashboard/order-history/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 13 Apr 2019 19:44:49 GMT -->
+</html>
+

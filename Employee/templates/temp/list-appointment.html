@@ -1,0 +1,84 @@
+{% extends 'temp/base.html' %}
+{% block title %}
+Appointment
+{% endblock  %}
+{% block body %}
+<div class="et brf">
+    <div class="bqn">
+<div class="bqo">
+<h6 class="bqq">Dashboards</h6>
+<h2 class="bqp">Order history</h2>
+</div>
+
+
+</div>
+
+<div class="bop ayg">
+<div class="boq bor">
+<div class="axm bpy">
+  <input type="text" class="form-control bsx" placeholder="Search orders">
+  <span class="bv bhw"></span>
+</div>
+</div>
+
+</div>
+
+<div class="ly">
+<table class="ck" data-sort="table">
+<thead>
+  <tr>
+    
+    <th>Order</th>
+    <th>Product Name</th>
+    <th>Address</th>
+    <th>Date</th>
+    <th>Conform</th>
+  </tr>
+</thead>
+<tbody>
+    {% for data in manageAppointment %}
+  <tr>
+    <td>#{{data.appointment.id}}</td>
+    <td>{{data.appointment.product}}</td>
+    <td>{{data.appointment.address}}</td>
+    <td>{{data.appointment.created_at}}</td>
+    <td><a href="/emp/conform/{{data.id}}">Ok</a></td>
+  </tr>
+
+  {% endfor %}
+</tbody>
+</table>
+</div>
+
+<div class="avv">
+<nav>
+<ul class="qn">
+  <li class="qp">
+    <a class="qo" href="#" aria-label="Previous">
+      <span aria-hidden="true">&laquo;</span>
+      <span class="adp">Previous</span>
+    </a>
+  </li>
+  <li class="qp active"><a class="qo" href="#">1</a></li>
+  <li class="qp"><a class="qo" href="#">2</a></li>
+  <li class="qp"><a class="qo" href="#">3</a></li>
+  <li class="qp"><a class="qo" href="#">4</a></li>
+  <li class="qp"><a class="qo" href="#">5</a></li>
+  <li class="qp">
+    <a class="qo" href="#" aria-label="Next">
+      <span aria-hidden="true">&raquo;</span>
+      <span class="adp">Next</span>
+    </a>
+  </li>
+</ul>
+</nav>
+</div>
+
+  </div>
+</div>
+</div>
+
+        
+{% endblock  %}
+{% block js %}
+{% endblock  %}

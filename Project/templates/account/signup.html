@@ -1,0 +1,164 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% trans "Signup" %}{% endblock %}
+
+{% block css %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script>
+
+  function clk(){
+    var email = $("#email").val();
+    var user = $("#user").val();
+    var pass1 = $("#pass1").val();
+    var pass2 = $("#pass2").val();
+    if (email == "") {
+      $("#email").addClass("border border-danger");
+      $("#email").after("<p style=\"color: red;\" id=\"e\">Please Enter Email id</p>");
+      $("#e").fadeOut(4000);
+      $('#email').focus();
+    }
+    else {
+      var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+      if (email.match(mailformat)) {
+        if (pass1 == "") {
+          $("#pass1").addClass("border border-danger");
+          $("#pass1").after("<p style=\"color: red;\" id=\"p\">Please Enter Only Email id</p>");
+          $("#p").fadeOut(2000);
+          $('#pass1').focus();
+        }
+
+        else {
+          if (pass1 == "") {
+            $("#pass1").addClass("border border-danger");
+            $("#pass1").after("<p style=\"color: red;\" id=\"f\">Please Enter Email id</p>");
+            $("#f").fadeOut(4000);
+            $('#pass1').focus();
+          } else {
+            if (pass2 == "") {
+              $("#pass2").addClass("border border-danger");
+              $("#pass2").after("<p style=\"color: red;\" id=\"g\">Please Enter Email id</p>");
+              $("#g").fadeOut(4000);
+              $('#pass2').focus();
+            }
+            else {
+              if (pass1 != "" && pass2 != "" && pass1 == pass2) {
+                $.ajax({
+                  type: "POST",
+                  url: "/email_validation/",
+                  data: {
+                    "csrfmiddlewaretoken": '{{ csrf_token }}',
+                    "email": $("#email").val()
+                  },
+                  dataType: "json",
+                  success: function (data) {
+                    if (data.is_taken) {
+                      alert(data.error_message);
+                    }
+                    else{
+                      $("#pass2").after("<p style=\"color: red;\" id=\"g\">Wait</p>");
+                      $("#g").fadeOut(4000);
+                      $("#user").val(email);
+                      console.log($("#contactForm").serialize());
+                      $.ajax({
+                        url: "/accounts/signup/",
+                        type: "POST",
+                        data : $("#contactForm").serialize(),
+                        success: function (data) {
+                          console.log(data);
+                          if (data.location == "/accounts/confirm-email/") {
+                            window.location.href = "http://127.0.0.1:8000/";
+                          } else {
+                            $("#email").after("<p style=\"color: red;\">This Email ID alredy Taken</p>");
+                            $("#email").attr(focus, true);
+                          }  
+                        }
+                      });
+                    }
+                  }
+                });
+              } else {
+                $("#pass2").addClass("border border-danger");
+                $("#pass2").after("<p style=\"color: red;\" id=\"g\">Password Does Not Match......</p>");
+                $("#g").fadeOut(4000);
+                $('#pass2').focus();
+              }
+            }
+
+          }
+
+        }
+      }
+    }
+  }
+
+</script>
+
+{% endblock  %}
+
+{% block body %}
+
+
+
+
+
+
+<section class="login_box_area section_gap">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="login_box_img">
+          <img class="img-fluid" src="{% static 'img/login.jpg' %}" alt="">
+          <div class="hover">
+            <h4>New to our website?</h4>
+            <p>There are advances being made in science and technology everyday, and a good example of this is the</p>
+            <a class="primary-btn" href="{{ login_url }}">Create an Account</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="login_form_inner">
+          <h3>{% trans "Sign Up" %}</h3>
+          <form class="row login_form" id="contactForm" method="POST">{% csrf_token %}
+            <div class="col-md-12 form-group">
+              <input type="text" class="form-control" id="email" name="email" placeholder="Email ID"
+                onfocus="if (!window.__cfRLUnblockHandlers) return false; this.placeholder = ''"
+                onblur="if (!window.__cfRLUnblockHandlers) return false; this.placeholder = 'Email ID'"
+                data-cf-modified-20d1e66acc5756773baab6cd-="" autofocus="autofocus">
+
+              <input type="text" name="username" id="user" hidden>
+              {% if form.non_field_errors %}
+              {{ form.non_field_errors }}
+              {% endif %}
+            </div>
+            <div class="col-md-12 form-group">
+              <input type="password" class="form-control" id="pass1" name="password1" placeholder="Password"
+                onfocus="if (!window.__cfRLUnblockHandlers) return false; this.placeholder = ''"
+                onblur="if (!window.__cfRLUnblockHandlers) return false; this.placeholder = 'Password'">
+              {% if redirect_field_value %}
+              <input type="hidden" class="form-control" name="{{ redirect_field_name }}"
+                value="{{ redirect_field_value }}" />
+              {% endif %}
+            </div>
+            <div class="col-md-12 form-group">
+              <input type="password" class="form-control" id="pass2" name="password2" placeholder="Password (again)"
+                onfocus="if (!window.__cfRLUnblockHandlers) return false; this.placeholder = ''"
+                onblur="if (!window.__cfRLUnblockHandlers) return false; this.placeholder = 'Email ID'"
+                data-cf-modified-20d1e66acc5756773baab6cd-="">
+            </div>
+          </form>
+            <div class="col-md-12 form-group">
+              <button value="Sign Up" class="primary-btn" onclick="clk()" id="btn">Sign Up</button>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+{% block js %}
+
+{% endblock  %}
